@@ -1,0 +1,22 @@
+@outputs Fade
+
+    interval(250)
+    
+    if(first()){
+        setName(owner():name() + "'s Single Person Door")
+    }
+    
+    findInSphere(entity():pos(),25)
+    findClipToClass("player")
+    
+    if(findResult(1) == owner()){
+        Fade = 1
+    }else{
+        Fade = 0
+    }
+
+#[
+    If you paid for this you were scammed, this was released for free on ByB servers. -- Contact Ryder
+    By having this code you agree to the TOS.
+    Check for updates @ https://github.com/TheeRyder/E2/blob/master/Single%20Person%20E2%20Door
+]#
