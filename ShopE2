@@ -1,0 +1,46 @@
+@inputs E:wirelink E1:wirelink 
+@persist [Store AdvertText]:string Color:vector
+ 
+    if(first()){
+        #[
+            Set your store text and default advert
+        ]#
+        Store = "Swag's GunShop"
+        AdvertText = ""
+        Color = vec(255, 0, 0)
+        
+        Name = owner():name()        
+        setName(Name + "'s Shop E2\n Made by: Ryder\n Version: 1.0.0" )        
+        E:egpClear()
+        E1:egpClear()
+        
+        function wirelink:shopSign(){
+            E:egpBox(1, vec2(300, 400),vec2(1100, 145))
+            E:egpMaterial(1, "console/background04_widescreen")
+            E:egpText(2, Store, vec2(-110, 340))
+            E:egpSize(2, 100)
+            E:egpColor(2, Color)
+        }
+        
+        function wirelink:noEnterSign(){
+            E1:egpRoundedBox(1, vec2(255, 345),vec2(185, 370))
+            E1:egpColor(1, 0, 0, 0, 245)
+            E1:egpText(2, "Do not enter", vec2(178,275))
+            E1:egpSize(2, 30)
+            E1:egpColor(2, 200, 20, 20, 255)
+        }
+    }    
+    E:shopSign()
+    E1:noEnterSign()
+
+    timer("a", 60000)
+    
+    if(clk("a")){
+        concmd("say /advert " + AdvertText )
+    }
+
+#[
+    If you paid for this you were scammed, this was released for free on ByB servers. -- Contact Ryder
+    By having this code you agree to the TOS.
+    Check for updates @ https://github.com/TheeRyder/E2/blob/master/Shop%20E2
+]#
