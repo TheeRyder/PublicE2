@@ -1,0 +1,37 @@
+@name Whois 
+
+    runOnChat(1)
+    
+    if(first()){
+        print("
+            -------------------------------------------------------------
+             This takes the player's current rank.                     
+             It is possible that it is an undercover admin.            
+             Root admins will show up as a Super-Admin because Weasle.  
+        ")
+    }
+    
+    if(chatClk(owner())){
+        A = owner():lastSaid():explode(" ")
+        if(A[1,string] == "!whois"){
+            Player = findPlayerByName(A[2,string])
+            hideChat(1)
+            if(Player:isPlayer()){
+                PRank = Player:getRank()
+                if(PRank == "super"){
+                    Rank = "Super-Admin"
+                }elseif(PRank == "admin"){
+                    Rank = "Admin"                
+                }elseif(PRank == "trusted"){
+                    Rank = "Trusted-Admin"
+                }elseif(PRank == "user" | PRank == "supporter"){
+                    Rank = "User | Supporter"
+                }
+                printColor(
+                    vec(255,0,0), "Name: ", vec(0,255,0), Player:name(),
+                    vec(255,0,0), "\nSteamID: ", vec(0,255,0), Player:steamID(),
+                    vec(255,0,0), "\nRank: ", vec(0,255,0), Rank
+                )
+            }
+        }
+    }
