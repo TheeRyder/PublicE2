@@ -5,7 +5,7 @@
         #[
             Set your store text and default advert
         ]#
-        Store = "Swag's GunShop"
+        Store = ""
         AdvertText = ""
         Color = vec(255, 0, 0)
         
