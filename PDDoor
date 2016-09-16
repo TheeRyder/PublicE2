@@ -1,0 +1,24 @@
+@outputs Fade
+
+    interval(250)
+    
+    if(first()|duped()){
+        setName(owner():name()+"'s PD Door")
+    }
+    
+    T = findResult(1)
+    
+    findInSphere(entity():pos(),60)
+    findClipToClass("player")
+    
+    if(T:isAuthorisedPersonnel() | T:isPoliceDeputy() | T:isMayorAssistant()){
+        Fade = 1
+    }else{
+        Fade = 0
+    }
+
+#[
+    If you paid for this you were scammed, this was released for free on ByB servers. -- Contact Ryder
+    By having this code you agree to the TOS.
+    Check for updates @ https://github.com/TheeRyder/PublicE2
+]#
