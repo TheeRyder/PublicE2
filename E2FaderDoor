@@ -12,29 +12,32 @@
 
     if(chatClk(owner())){
         A = owner():lastSaid():explode(" ")
-        if(A[1,string] == "!add"){
-            hideChat(1)
-            Player = findPlayerByName(A[2,string])
-            if(Player:isPlayer()){
-                PlayerID = Player:steamID()
-                Allow[PlayerID, number] = 1
-                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), Player:name() + " has been added.")
-            }
-        }
         switch(A[1,string]){
+            case "!add",
+                hideChat(1)
+                Player = findPlayerByName(A[2,string])
+                if(Player:isPlayer()){
+                    PlayerID = Player:steamID()
+                    Allow[PlayerID, number] = 1
+                    printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), Player:name() + " has been added.")
+                }
+            break
             case "!prop1",
+                hideChat(1)
                 Prop1["Entity",entity] = owner():aimEntity()
                 Prop1["Wirelink",wirelink] = Prop1["Entity",entity]:wirelink()
                 Prop1["EntityPos",vector] = Prop1["Entity",entity]:pos() 
                 printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 1 added.")
             break
             case "!prop2",
+                hideChat(1)
                 Prop2["Entity",entity] = owner():aimEntity()
                 Prop2["Wirelink",wirelink] = Prop2["Entity",entity]:wirelink()
                 Prop2["EntityPos",vector] = Prop2["Entity",entity]:pos() 
                 printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 2 added.")
             break
             case "!prop3",
+                hideChat(1)
                 Prop3["Entity",entity] = owner():aimEntity()
                 Prop3["Wirelink",wirelink] = Prop3["Entity",entity]:wirelink()
                 Prop3["EntityPos",vector] = Prop3["Entity",entity]:pos() 
