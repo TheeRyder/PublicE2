@@ -13,11 +13,14 @@
     if(chatClk(owner())){
         A = owner():lastSaid():explode(" ")
         switch(A[1,string]){
-            case "!add",
+            case "!user",
                 hideChat(1)
                 Player = findPlayerByName(A[2,string])
-                if(Player:isPlayer()){
-                    PlayerID = Player:steamID()
+                PlayerID = Player:steamID()
+                if(Allow:exists(PlayerID)){
+                    Allow:remove(PlayerID)
+                    printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), Player:name() + " has been removed.")
+                }else{
                     Allow[PlayerID, number] = 1
                     printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), Player:name() + " has been added.")
                 }
