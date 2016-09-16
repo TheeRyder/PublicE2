@@ -1,0 +1,56 @@
+@outputs Allow:table 
+@persist [Prop1 Prop2 Prop3]:table Allow:table
+
+    runOnChat(1)
+    interval(150)
+    
+    if(first()){
+        setName(owner():name() + "'s rDoorFader E2\n Made by: Ryder\n Version: 1.0.0" )      
+        Allow[owner():steamID(),number] = 1        
+        findIncludeClass("player")
+    }
+
+    if(chatClk(owner())){
+        A = owner():lastSaid():explode(" ")
+        if(A[1,string] == "!add"){
+            hideChat(1)
+            Player = findPlayerByName(A[2,string])
+            if(Player:isPlayer()){
+                PlayerID = Player:steamID()
+                Allow[PlayerID, number] = 1
+                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), Player:name() + " has been added.")
+            }
+        }
+        switch(A[1,string]){
+            case "!prop1",
+                Prop1["Entity",entity] = owner():aimEntity()
+                Prop1["Wirelink",wirelink] = Prop1["Entity",entity]:wirelink()
+                Prop1["EntityPos",vector] = Prop1["Entity",entity]:pos() 
+                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 1 added.")
+            break
+            case "!prop2",
+                Prop2["Entity",entity] = owner():aimEntity()
+                Prop2["Wirelink",wirelink] = Prop2["Entity",entity]:wirelink()
+                Prop2["EntityPos",vector] = Prop2["Entity",entity]:pos() 
+                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 2 added.")
+            break
+            case "!prop3",
+                Prop3["Entity",entity] = owner():aimEntity()
+                Prop3["Wirelink",wirelink] = Prop3["Entity",entity]:wirelink()
+                Prop3["EntityPos",vector] = Prop3["Entity",entity]:pos() 
+                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 2 added.")
+            break
+        }    
+    }
+
+    findInSphere(Prop1["EntityPos",vector],50)
+    local EntityFind = findClosest(Prop1["EntityPos",vector])
+    Prop1["Wirelink",wirelink]["Fade",number] = (Allow:exists(EntityFind:steamID()) & EntityFind:isAlive() ? 1 : 0)
+    
+    findInSphere(Prop2["EntityPos",vector],50)
+    local EntityFind = findClosest(Prop2["EntityPos",vector])
+    Prop2["Wirelink",wirelink]["Fade",number] = (Allow:exists(EntityFind:steamID()) & EntityFind:isAlive() ? 1 : 0)
+    
+    findInSphere(Prop3["EntityPos",vector],50)
+    local EntityFind = findClosest(Prop2["EntityPos",vector])
+    Prop3["Wirelink",wirelink]["Fade",number] = (Allow:exists(EntityFind:steamID()) & EntityFind:isAlive() ? 1 : 0)
