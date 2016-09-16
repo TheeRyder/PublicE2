@@ -8,6 +8,7 @@
         setName(owner():name() + "'s rDoorFader E2\n Made by: Ryder\n Version: 1.0.0" )      
         Allow[owner():steamID(),number] = 1        
         findIncludeClass("player")
+        printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "!help for commands.")
     }
 
     if(chatClk(owner())){
@@ -45,6 +46,15 @@
                 Prop3["Wirelink",wirelink] = Prop3["Entity",entity]:wirelink()
                 Prop3["EntityPos",vector] = Prop3["Entity",entity]:pos() 
                 printColor(vec(255,0,0), "[rDoorFader] ", vec(0,0,255), "Door 2 added.")
+            break
+            case "!help",
+                hideChat(1)
+                printColor(vec(0,0,0), " ")
+                printColor(vec(0,0,0), "                                                ", vec(255,0,0),"Commands")
+                printColor(vec(0,0,0), "------------------------------------------------------------------------")
+                printColor(vec(255,0,0), "[!user] ", vec(255,255,255), "Adds and removes a player by name   (!add [name])")
+                printColor(vec(255,0,0), "[!prop(1-3)] ", vec(255,255,255), "Adds the prop you are looking at   (!prop[#])")
+                printColor(vec(0,0,0), "------------------------------------------------------------------------")
             break
         }    
     }
