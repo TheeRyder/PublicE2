@@ -49,12 +49,14 @@
             break
             case "!help",
                 hideChat(1)
-                printColor(vec(0,0,0), " ")
-                printColor(vec(0,0,0), "                                                ", vec(255,0,0),"Commands")
-                printColor(vec(0,0,0), "------------------------------------------------------------------------")
-                printColor(vec(255,0,0), "[!user] ", vec(255,255,255), "Adds and removes a player by name   (!add [name])")
-                printColor(vec(255,0,0), "[!prop(1-3)] ", vec(255,255,255), "Adds the prop you are looking at   (!prop[#])")
-                printColor(vec(0,0,0), "------------------------------------------------------------------------")
+                printColor(
+                    vec(0,0,0), " \n",
+                    vec(0,0,0), "                                                ", vec(255,0,0), "Commands\n",
+                    vec(0,0,0), "------------------------------------------------------------------------\n",
+                    vec(255,0,0), "     [!user] ", vec(255,255,255), "Adds and removes a player by name   (!add [name])\n",
+                    vec(255,0,0), "     [!prop(1-3)] ", vec(255,255,255), "Adds the prop you are looking at   (!prop[#])\n",
+                    vec(0,0,0), "------------------------------------------------------------------------\n"
+                )
             break
         }    
     }
