@@ -60,3 +60,9 @@
     findInSphere(Prop3["EntityPos",vector],50)
     local EntityFind = findClosest(Prop2["EntityPos",vector])
     Prop3["Wirelink",wirelink]["Fade",number] = (Allow:exists(EntityFind:steamID()) & EntityFind:isAlive() ? 1 : 0)
+
+#[
+    If you paid for this you were scammed, this was released for free on ByB servers. -- Contact Ryder
+    By having this code you agree to the TOS.
+    Check for updates @ https://github.com/TheeRyder/PublicE2
+]#
