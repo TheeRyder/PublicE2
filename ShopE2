@@ -3,7 +3,7 @@
  
     if(first()){
         #[
-            Change your settingsq
+            Change your settings
         ]#
         Store = ""
         AdvertText = ""
@@ -22,7 +22,6 @@
             E:egpText(2, Store, vec2(-110, 340))
             E:egpSize(2, 100)
             E:egpColor(2, Color)
-            E:egpFont(2, "Comic sans ms")
         }
         
         function wirelink:noEnterSign(){
@@ -45,5 +44,5 @@
 #[
     If you paid for this you were scammed, this was released for free on ByB servers. -- Contact Ryder
     By having this code you agree to the TOS.
-    Check for updates @ https://github.com/TheeRyder/E2/blob/master/Shop%20E2
+    Check for updates @ https://github.com/TheeRyder/PublicE2
 ]#
