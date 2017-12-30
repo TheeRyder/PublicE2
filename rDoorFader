@@ -1,15 +1,23 @@
 @outputs Door Allow:array
     if(first()|duped()){
-        setName(owner():name() + "'s rDoorFader\n Made by: Ryder\n Version: 1.0" )  
+        setName(owner():name()+"'s E2 Door") 
         Allow[1,entity] = owner()
         runOnChat(1)
+        function void commands(){
+    	    	printColor(vec(255,255,255), "--------------------------", vec(255,0,0), "Commands", vec(255,255,255), "--------------------------")
+    	        print("!help - Print commands")  
+    	        print("!add <Name> - Add a player to the door by name")
+    	        print("!rem  <Name> - Remove a player from the door by name")
+    	        print("!remall - Adverts your selected broadcast")
+    	        print("!list - Calls the police to your location in an emergancy")        
+        }
     }
     interval(350)
     findInSphere(entity():pos(),50)
     findClipToClass("player")
     Target = findResult(1)
     for(I = 1,Allow:count()){
-        if(Target&Target:isAlive()){
+        if(Target & Target:isAlive()){
             if(Target == Allow[I,entity]){
                 Door = 1
                 break
@@ -30,7 +38,7 @@
                 hideChat(1)
                 Already = 0
                 Player = findPlayerByName(A[2,string])
-                if(Allow:count()<15){
+                if(Allow:count() < 15){
                     if(Player:isPlayer()){
                         for(I=1, Allow:count()){
                             if(Player == Allow[I,entity]){
@@ -77,6 +85,10 @@
                 for(I=1, Allow:count()) {
                     print(Allow[I,entity]:name())
                 }
+            break
+            case "!help",
+                hideChat(1)
+                commands()
             break
         }
     }
