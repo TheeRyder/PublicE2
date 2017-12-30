@@ -21,9 +21,9 @@
                                             #                           Set your Broadcasts                                 #
                                             #                                                                               #
                                                
-						                          Broadcast1 = "All Government officials report to the Police Department" 
-						                          Broadcast2 = "The Police department is being raided"
-						                          Broadcast3 = "Terror near the Police Department"
+                                                Broadcast1 = "All Government officials report to the Police Department" 
+                                                Broadcast2 = "The Police department is being raided"
+                                                Broadcast3 = "Terror near the Police Department"
                                                                      
                                             
                                             
@@ -35,7 +35,7 @@
 	        print("!help - Print commands")  
 	        print("!ld - Starts a lockdown and adverts it")
 	        print("!al - Adds your predefined laws")
-	        print("!b <#> - Adverts your selected broadcast")
+	        print("!b <number> - Adverts your selected broadcast")
 	        print("!e - Calls the police to your location in an emergancy")        
 	    }
     }    
