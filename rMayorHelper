@@ -59,7 +59,7 @@
                 hideChat(1)
             break
             case "!ld",
-    	    	      timer("LD",300)
+    	    	timer("LD",300)
                 hideChat(1)
             break
             case "!al",
