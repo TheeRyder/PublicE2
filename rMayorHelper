@@ -35,7 +35,7 @@
 	        print("!help - Print commands")  
 	        print("!ld - Starts a lockdown and adverts it")
 	        print("!al - Adds your predefined laws")
-	        print("!b <number> - Adverts your selected broadcast")
+	        print("!b <#> - Adverts your selected broadcast")
 	        print("!e - Calls the police to your location in an emergancy")        
 	    }
     }    
