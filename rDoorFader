@@ -1,0 +1,84 @@
+@outputs Door Allow:array
+    if(first()|duped()){
+        setName(owner():name() + "'s rDoorFader\n Made by: Ryder\n Version: 1.0" )  
+        Allow[1,entity] = owner()
+        runOnChat(1)
+    }
+    interval(350)
+    findInSphere(entity():pos(),50)
+    findClipToClass("player")
+    Target = findResult(1)
+    for(I = 1,Allow:count()){
+        if(Target&Target:isAlive()){
+            if(Target == Allow[I,entity]){
+                Door = 1
+                break
+            }else{
+                Door = 0
+            }
+        }else{
+           Door = 0
+        }
+        if(!Allow[I,entity]:isPlayer()){
+            Allow:remove(I) 
+        }
+    }
+    if(chatClk(owner())){
+        A = owner():lastSaid():explode(" ")
+        switch(A[1,string]){
+            case "!add",
+                hideChat(1)
+                Already = 0
+                Player = findPlayerByName(A[2,string])
+                if(Allow:count()<15){
+                    if(Player:isPlayer()){
+                        for(I=1, Allow:count()){
+                            if(Player == Allow[I,entity]){
+                                Already = 1
+                                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,200,50),  Player:name(), vec(255,255,255), " is already allowed")
+                                break
+                            }
+                        }
+                        if(Already == 0) {
+                            Allow:pushEntity(Player)
+                            printColor(vec(255,0,0), "[rDoorFader] ", vec(0,200,50),  Player:name(), vec(255,255,255), " to allow list")
+                        }
+                    }else{
+                        print("Not a player")
+                    }  
+                }else{
+                    print("Chip full")
+                }
+            break
+            case "!rem",
+                hideChat(1)
+                Player = findPlayerByName(A[2,string])
+                if(Player:isPlayer()){
+                    for(I=1, Allow:count()){
+                        if(Player == owner()){ 
+                            print("Can't do that,sorry!")
+                            break
+                        }
+                            if(Player == Allow[I,entity]) {
+                                Allow:remove(I)
+                                printColor(vec(255,0,0), "[rDoorFader] ", vec(0,200,50),  Player:name(), vec(255,255,255), " from allow list")
+                            }
+                        }
+                    }
+            break
+            case "!remall",
+                hideChat(1)
+                Allow:clear()
+                Allow[1,entity] = owner()
+                printColor(vec(255,0,0), "[rDoorFader] ", vec(255,255,255), "Cleared all other players")        
+            break
+            case "!list",
+                hideChat(1)
+                for(I=1, Allow:count()) {
+                    print(Allow[I,entity]:name())
+                }
+            break
+        }
+    }
+
+
