@@ -1,0 +1,162 @@
+@persist [Law1 Law2 Law3 Law4 Law5 Law6 Law7 Law8 Law9 Law10 Broadcast1 Broadcast2 Broadcast3]:string Say:array 
+    if(first()){                                                
+                                            #################################################################################
+                                            #                                                                               #
+                                            #                           Set your default laws here                          #
+                                                
+                                                Law1 = "All guns are illegal! - CP are exempt from this law"                              
+                                                Law2 = "No vandalism - IE: shooting windows"                                
+                                                Law3 = "Entering the PD without permissions is not permitted"               
+                                                Law4 = "All drugs are illegal"                          
+                                                Law5 = "Public indecency/disturbance is illegal - IE: Swearing"             
+                                                Law6 = "Being outside during a lock down will get you arrested or killed"    
+                                                Law7 = "Raiding tools are illegal - So are knives/flashes/gernades"                      
+                                                Law8 = "Only I, the Mayor, may bail people"                                 
+                                                Law9 = "Any threats or disrespect towards CP or peers is illegal"             
+                                            #                                                                               #
+                                            #                                                                               #
+                                            #################################################################################
+                                            
+                                            #################################################################################
+                                            #                           Set your Broadcasts                                 #
+                                            #                                                                               #
+                                               
+						                                      Broadcast1 = "All Government officials report to the Police Department" 
+						                                      Broadcast2 = "The Police department is being raided"
+						                                      Broadcast3 = "Terror near the Police Department"
+                                                                     
+                                            
+                                            
+                                            #                                                                               #
+                                            #                                                                               #
+                                            #################################################################################
+    function void commands(){
+	    	printColor(vec(255,255,255), "--------------------------", vec(255,0,0), "Commands", vec(255,255,255), "--------------------------")
+	        print("!help - Print commands")  
+	        print("!ld - Starts a lockdown and adverts it")
+	        print("!al - Adds your predefined laws")
+	        print("!b <number> - Adverts your selected broadcast")
+	        print("!e - Calls the police to your location in an emergancy")        
+	    }
+    }    
+    runOnChat(1)
+    
+    if(first() | duped()){ 
+        setName(owner():name() + "'s rMayorHelper" + "\n Made by: Ryder" + "\n Version: 1.1")
+        if(owner():team():teamName() != "Mayor"){
+            print("You have to be Mayor to use this E2.")
+            selfDestruct()
+        }else{
+            print("!help - Print commands") 
+        }
+    }
+        
+    if(chatClk(owner())){
+        A = owner():lastSaid():explode(" ")
+        switch(A[1,string]){        
+            case "!help",
+                commands()
+                hideChat(1)
+            break
+            case "!ld",
+    	    	      timer("LD",300)
+                hideChat(1)
+            break
+            case "!al",
+                timer("AL1",1000)
+                hideChat(1)
+            break
+            case "!e",
+                timer("e",1000)
+                hideChat(1)
+            break
+            case "!b",
+                hideChat(1)
+                switch(A[2,string]){
+                    case "1",
+                        concmd("say /advert " + Broadcast1)
+                    break
+                    case "2",
+                        concmd("say /advert " + Broadcast2)
+                    break
+                    case "3",
+                        concmd("say /advert " + Broadcast3)
+                    break
+                }
+            break      
+        }
+    }
+    
+        if(clk("Lockdown")){ 
+            timer("LD",300)
+        }
+        
+        if(clk("LD")){
+            concmd("say /advert There is a lock down in effect. You have 15 seconds to get inside.")
+            timer("LD1",1000)
+            timer("LDS", 15000)
+        }
+        		
+        if(clk("LD1")){
+            concmd("say /lockdown")
+        }
+        
+        if(clk("LDS")){
+            concmd("say /advert The lockdown is now in complete effect. Anyone outside will be AOS/KOS!")
+        }   
+             
+        if(clk("Advert")){
+            concmd("say /advert Be sure to read all laws. It is your fault if you don't know them!")
+        }
+        
+        if(clk("Advert")){
+            concmd("say /911 I need help at my location NOW!")
+        }
+        
+        if(clk("AL1")){
+            concmd("say /addlaw " + Law1)
+            timer("AL2", 2500)
+        }
+        
+        if(clk("AL2")){
+            concmd("say /addlaw " + Law2)
+            timer("AL3", 2500)
+        }
+        
+        if(clk("AL3")){
+            concmd("say /addlaw " + Law3)
+            timer("AL4", 2500)
+        }
+        
+        if(clk("AL4")){
+            concmd("say /addlaw " + Law4)
+            timer("AL5", 2500)
+        }
+        
+        if(clk("AL5")){
+            concmd("say /addlaw " + Law5)
+            timer("AL6", 2500)
+        }
+        
+        if(clk("AL6")){
+            concmd("say /addlaw " + Law6)
+            timer("AL7", 2500)
+        }
+        
+        if(clk("AL7")){
+            concmd("say /addlaw " + Law7)
+            timer("AL8", 2500)
+        }
+        
+        if(clk("AL8")){
+            concmd("say /addlaw " + Law8)
+            timer("AL9", 2500)
+        }
+                  
+        if(clk("AL9")){
+            concmd("say /addlaw " + Law9)
+            printColor(vec(0,255,0), "All laws have been added! \n", vec(255,0,0), "Check to be sure!")
+        }
+        
+               
+    timer("Advert",120000)
