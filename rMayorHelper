@@ -21,9 +21,9 @@
                                             #                           Set your Broadcasts                                 #
                                             #                                                                               #
                                                
-						                                      Broadcast1 = "All Government officials report to the Police Department" 
-						                                      Broadcast2 = "The Police department is being raided"
-						                                      Broadcast3 = "Terror near the Police Department"
+						                          Broadcast1 = "All Government officials report to the Police Department" 
+						                          Broadcast2 = "The Police department is being raided"
+						                          Broadcast3 = "Terror near the Police Department"
                                                                      
                                             
                                             
