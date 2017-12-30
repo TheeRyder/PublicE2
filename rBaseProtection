@@ -1,0 +1,27 @@
+@inputs Keypad1 Keypad2 Keypad3 Keypad4
+	
+    if(first()){      
+        setName(owner():name() + "'s rBaseProtection\n Made by: Ryder\n Version: 1.0" )      
+    }
+  
+    if(~Keypad1 & Keypad1){
+        hint("Keypad #1 Cracked",10)
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+        printColor(vec(255,255,255), "            The first keypad has been cracked!")
+        printColor(vec(0,0,255), "--------------------------------------------------------------------------")
+    }elseif(~Keypad2 & Keypad2){
+        hint("Keypad #2 Cracked",10)
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+        printColor(vec(255,255,255), "            The second keypad has been cracked!")
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+    }elseif(~Keypad3 & Keypad3){
+        hint("Keypad #3 Cracked",10)
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+        printColor(vec(255,255,255), "            The thrid keypad has been cracked!")
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+    }elseif(~Keypad4 & Keypad4){
+        hint("Keypad #4 Cracked",10)
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+        printColor(vec(255,255,255), "            The fourth keypad has been cracked!")
+        printColor(vec(0,0,255), "-----------------------", vec(255,0,0), "[rBase Protection]", vec(0,0,255),"-----------------------")
+    }
