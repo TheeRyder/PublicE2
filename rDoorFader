@@ -1,6 +1,6 @@
 @outputs Door Allow:array
     if(first()|duped()){
-        setName(owner():name()+"'s E2 Door") 
+        setName(owner():name() + "'s rDoorFader\n Made by: Ryder\n Version: 1.0" )   
         Allow[1,entity] = owner()
         runOnChat(1)
         function void commands(){
