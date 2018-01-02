@@ -1,0 +1,247 @@
+@name Lottery E2
+@inputs E:wirelink
+@persist [JackPot,TicketPrice,Tickets,PercentProfit,Closed]:number [Players,NewArray]:array [Winner,Advert,AdvertPrint]:string
+    if(first()) {
+        #Here are variables you may change to your liking! 
+        PercentProfit = 5
+        TicketPrice = 5000
+        Advert = "Come play the rJackPot Lottery at Fountain! The Current Jackpot: [CURRENT_AMOUNT] The Current TicketPrice: " + TicketPrice
+    }   #Use [CURRENT_AMOUNT] for current jackpot
+     
+    #------------------------------------------------------------------------------------------------------------------------------------------
+        
+    runOnChat(1)
+        
+    if(first()) {
+    #Here are variables you MAY NOT change!
+        JackPot = 0
+        Tickets = 0
+        Closed = 0
+        setName(owner():name() + "'s rLottery\n Made by: Ryder\n Version: 1.0" )   
+    }
+    if(first()) {
+        printColor(vec(100,100,100),"---------------------------------------------------------------")
+        printColor(vec(33,255,33),"                         rLOTTERY E2 ")
+        printColor(vec(33,255,33),"           Made by Ryder")
+        printColor(vec(33,255,33),"     Type !help for commands and info")
+        printColor(vec(100,100,100),"---------------------------------------------------------------")
+
+        function wirelink:main(){
+            E:egpClear()
+    
+            E:egpRoundedBox(2, vec2(256,25), vec2(256,95))
+            E:egpColor(2, vec(0,0,0))
+            
+            E:egpRoundedBox(4, vec2(256,25), vec2(250,90))
+            E:egpColor(4, vec(80,80,80))
+            E:egpMaterial(4, "console/background04_widescreen")
+            E:egpAlpha(4, 200)
+            
+            E:egpText(13, "rLOTTERY", vec2(256,5))
+            E:egpColor(13, vec(0,200,50))
+            E:egpSize(13, 50)
+            E:egpAlign(13,1,1)
+            
+            E:egpText(1, "-----------", vec2(256,25))
+            E:egpColor(1, vec(0,0,0))
+            E:egpSize(1, 50)
+            E:egpAlign(1,1,1)
+            
+            E:egpText(3, "YRETTOLr", vec2(256,50))
+            E:egpColor(3, vec(0,200,50))
+            E:egpSize(3, 50)
+            E:egpAlign(3,1,1)
+            
+            E:egpRoundedBox(5, vec2(256,150), vec2(256,95))
+            E:egpColor(5, vec(0,0,0))
+            
+            E:egpRoundedBox(6, vec2(256,150), vec2(250,90))
+            E:egpColor(6, vec(80,80,80))
+            
+            E:egpText(7, "Jackpot:", vec2(256,125))
+            E:egpColor(7, vec(0,0,0))
+            E:egpSize(7, 25)
+            E:egpAlign(7,1,0)
+            
+            E:egpText(8, "$" + JackPot, vec2(255,175))
+            E:egpColor(8, vec(0,200,50))
+            E:egpSize(8, 25)
+            E:egpAlign(8,1,1)
+            
+            E:egpRoundedBox(9, vec2(256,275), vec2(256,95))
+            E:egpColor(9, vec(0,0,0))
+            
+            E:egpRoundedBox(10, vec2(256,275), vec2(250,90))
+            E:egpColor(10, vec(80,80,80))
+            
+            E:egpText(11, "Price Per Ticket:", vec2(256,275))
+            E:egpColor(11, vec(0,0,0))
+            E:egpSize(11, 25)
+            E:egpAlign(11,1,2)
+            
+            E:egpText(12, "$" + TicketPrice, vec2(255,300))
+            E:egpColor(12, vec(0,200,50))
+            E:egpSize(12, 25)
+            E:egpAlign(12,1,1)
+
+            E:egpRoundedBox(14, vec2(256,400), vec2(256,95))
+            E:egpColor(14, vec(0,0,0))
+            
+            E:egpRoundedBox(15, vec2(256,400), vec2(250,90))
+            E:egpColor(15, vec(80,80,80))
+            
+            Taxed = JackPot - (JackPot/100*PercentProfit)
+            E:egpText(19,"Tax:",vec2(230,370))
+            E:egpText(21, PercentProfit + "%", vec2(285,370))
+            E:egpSize(19, 25)
+            E:egpAlign(19,1,1)
+            E:egpColor(19,vec(0,0,0))
+            E:egpSize(21, 25)
+            E:egpAlign(21,1,1)
+            E:egpColor(21,vec(0,200,50))   
+                    
+            E:egpText(20,"% chance per ticket",vec2(256,390))
+            E:egpAlign(20,1,1)
+            E:egpColor(20,vec(0,0,0))
+                       
+            if(Tickets <= 0){
+                E:egpText(16, "1 ticket: 100%", vec2(256,405))
+            }elseif(Tickets > 0){
+                E:egpText(16, "1 ticket: " + round((1/Tickets)*100,3) + "%", vec2(256,405))
+            }
+            
+            if(Tickets <= 5){
+                E:egpText(17, "5 tickets: 100%", vec2(256,420))  
+            }else{
+                E:egpText(17, "5 tickets: " + round((5/Tickets)*100,3) + "%", vec2(256,420))
+            }
+            
+            if(Tickets <=10) {
+                E:egpText(18, "10 tickets: 100%", vec2(256,435))
+            }else{
+                E:egpText(18, "10 tickets: " + round((10/Tickets)*100,3) + "%" , vec2(256,435))}  
+                E:egpAlign(16,1,1), E:egpAlign(17,1,1), E:egpAlign(18,1,1)
+                E:egpColor(16, vec(0,200,50)), E:egpColor(17, vec(0,200,50)), E:egpColor(18, vec(0,200,50))        
+            }
+        }
+        function help(){
+        printColor(vec(100,100,100),"---------------------------------------------------------------")
+        printColor(vec(33,255,33),"                         rLOTTERY E2 ")
+        printColor(vec(33,255,33),"           Made by Ryder")
+        printColor(vec(33,255,33),"!t [# of Tickets] [Name] - Add tickets")
+        printColor(vec(33,255,33),"!sj [#] - Set jackpot")
+        printColor(vec(33,255,33),"!sa [String] - set advert([CURRENT_AMOUNT] = Jackpot)")
+        printColor(vec(33,255,33),"!a - Adverts")
+        printColor(vec(33,255,33),"!pick - Decide the winner and advert it")
+        printColor(vec(33,255,33),"!clear - Resets the lottery")        
+        printColor(vec(100,100,100),"---------------------------------------------------------------")            
+        }
+    timer("advert",120000)   
+    E:main()
+    if(chatClk(owner())){
+        A = owner():lastSaid():explode(" ")
+        switch(A[1,string]){
+            case "!t",
+            hideChat(1)
+                if(A[2,string]!= "" & A[3,string]!= "" & A[4,string]== "") {
+                    if(A[2,string]:toNumber() < 1){
+                        printColor(vec(255,75,75), "Cannot add less than 1 ticket!")  
+                    }else{
+                        if(A[2,string]:toNumber() <= 500) {
+                            if(findPlayerByName(A[3,string])) {
+                                Player = findPlayerByName(A[3,string]):name()
+                                if(A[2,string]:toNumber() > Tickets) {
+                                    for(I = Tickets, A[2,string]:toNumber(), 1){
+                                if(I != Tickets) {
+                                    Players[I,string] = Player      
+                                }
+                            }  
+                        }elseif(A[2,string]:toNumber() <= Tickets){
+                            for(I = Tickets,A[2,string]:toNumber() +  Tickets, 1){
+                                if(I != Tickets){
+                                    Players[I,string] = Player    
+                                }
+                            }
+                        }
+                            Tickets = Tickets + A[2,string]:toNumber()
+                            JackPot = JackPot + (TicketPrice * A[2,string]:toNumber())
+                            printColor(vec(0,150,255),"Added " + A[2,string] + " tickets to the lottery under the name of ", vec(255,255,33), Player)
+                            printColor(vec(0,150,255), "Current amount of tickets: " + Tickets)
+                            E:main()
+                        }else{
+                            printColor(vec(255,75,75),"Error: "+A[3,string]+" is not a player online!")
+                        }
+                    }else{
+                        printColor(vec(255,75,75),"Cannot add more than 500 tickets at once!")
+                    }
+                }
+            }else{
+                printColor(vec(255,75,75),"Correct Usage: !t [number of tickets] [player name]")
+            }
+            break  
+            case "!clear",
+                hideChat(1)
+                printColor(vec(33,255,33), "Cleared the lottery.")
+                Players = NewArray
+                Tickets = 0
+                JackPot = 0
+                E:main()  
+            break
+            case "!pick",
+                hideChat(1)
+                if(A[2,string] == ""){
+                    LuckyNumber = ceil(random(1, Tickets))
+                    printColor(vec(33,255,33), "The lottery results are in! The lucky number was... ", vec(255,255,33), LuckyNumber + "!")
+                    Profit = JackPot / 100 * PercentProfit  
+                    printColor(vec(33,255,33), "You get a profit of $" + Profit + " Give them $" + (JackPot-Profit):toString())
+                    Winner = Players[LuckyNumber,string]
+                    printColor(vec(200,33,255), "THE WINNER IS... ", vec(255,255,33), Winner)
+                    timer("WINNER", 1000)
+                    Players = NewArray
+                    Tickets = 0
+                    JackPot = 0
+                    E:main()
+                }else{
+                    printColor(vec(255,33,33),"Correct Usage: !pick")
+                }
+            break
+            case "!sj",
+                hideChat(1)
+                if(A[2,string] != "" & A[3,string] == "") {
+                    JackPot = A[2,string]:toNumber()
+                    printColor(vec(0,150,255), "You set the jackpot to $" + A[2,string]:toNumber())
+                    E:main()
+                }else{
+                    printColor(vec(255,33,33), "Corrent Usage: !sj [amount]")
+                }
+            break
+            case "!a",
+                hideChat(1)
+                timer("advertnow",1000)
+            break
+            case "!help",
+                hideChat(1)
+                help()
+            break
+            }
+        } 
+    
+    if(clk("WINNER")) {
+        stoptimer("WINNER")
+        hideChat(0)
+        concmd("say \"/advert [rLottery] THE WINNER IS... " + Winner + "!\"")  
+    }
+    
+    if(clk("advert")) {
+        if(Advert:find("[CURRENT_AMOUNT]")) {
+                AdvertPrint = Advert:replace("[CURRENT_AMOUNT]",JackPot:toString())  
+        }
+        concmd("say \"/advert " + AdvertPrint + "\"")  
+    }
+
+    if(clk("advertnow")) {
+        if(Advert:find("[CURRENT_AMOUNT]")) {
+                AdvertPrint = Advert:replace("[CURRENT_AMOUNT]",JackPot:toString())  
+        }
+        concmd("say \"/advert " + AdvertPrint + "\"")  
+    }
